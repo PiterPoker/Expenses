@@ -12,5 +12,5 @@ public interface IWalletRepository : IRepository<Wallet>
     /// </summary>
     /// <param name="name">Название кошелька.</param>
     /// <returns>Кошелек или null, если кошелек не найден.</returns>
-    Task<Wallet> GetWalletByNameAsync(string name);
+    Task<Wallet?> GetWalletByNameAsync(string name);
 }

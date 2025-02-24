@@ -12,5 +12,5 @@ public interface ICategoryRepository : IRepository<Category>
     /// </summary>
     /// <param name="name">Название категории.</param>
     /// <returns>Категория или null, если категория не найдена.</returns>
-    Task<Category> GetCategoryByNameAsync(string name);
+    Task<Category?> GetCategoryByNameAsync(string name);
 }

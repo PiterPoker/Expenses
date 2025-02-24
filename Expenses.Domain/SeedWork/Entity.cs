@@ -7,12 +7,12 @@
 public abstract class Entity
 {
     int? _requestedHashCode;
-    int _Id;
+    long _Id;
 
     /// <summary>
     /// Gets the unique identifier for this entity.
     /// </summary>
-    public virtual int Id
+    public virtual long Id
     {
         get => _Id;
         protected set => _Id = value;

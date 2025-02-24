@@ -12,5 +12,5 @@ public interface IAuthorRepository : IRepository<Author>
     /// </summary>
     /// <param name="name">Имя автора расходов.</param>
     /// <returns>Автор расходов или null, если автор не найден.</returns>
-    Task<Author> GetAuthorByNameAsync(string name);
+    Task<Author?> GetAuthorByNameAsync(string name);
 }
