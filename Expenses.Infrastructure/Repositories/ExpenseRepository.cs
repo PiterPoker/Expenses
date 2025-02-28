@@ -1,5 +1,6 @@
 ﻿using Expenses.Domain.Entities;
 using Expenses.Domain.Interfaces.Repositories;
+using Expenses.Domain.Interfaces.Specifications;
 using Expenses.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,23 @@ public class ExpenseRepository : IExpenseRepository
     public ExpenseRepository(ExpensesContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
+    }
+
+    public async Task<List<Expense>> GetExpensesAsync(ISpecification<Expense> specification)
+    {
+        var query = _context.Expenses.AsQueryable();
+
+        if (specification.Criteria is not null)
+        {
+            query = query.Where(specification.Criteria);
+        }
+
+        if (specification.Includes is not null)
+        {
+            query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
+        }
+
+        return await query.ToListAsync();
     }
 
     /// <summary>
@@ -62,7 +80,7 @@ public class ExpenseRepository : IExpenseRepository
     /// </summary>
     /// <param name="id">The ID of the Expense entity.</param>
     /// <returns>A Task containing the Expense entity or null if not found.</returns>
-    public async Task<Expense?> GetByIdAsync(int id)
+    public async Task<Expense?> GetByIdAsync(long id)
     {
         return await _context.Expenses.FindAsync(id);
     }
@@ -72,7 +90,7 @@ public class ExpenseRepository : IExpenseRepository
     /// </summary>
     /// <param name="categoryId">The ID of the category.</param>
     /// <returns>A Task containing a list of Expense entities.</returns>
-    public async Task<List<Expense>> GetExpensesByCategoryIdAsync(int categoryId)
+    public async Task<List<Expense>> GetExpensesByCategoryIdAsync(long categoryId)
     {
         return await _context.Expenses.Where(e => e.Category.Id == categoryId).ToListAsync();
     }
@@ -93,7 +111,7 @@ public class ExpenseRepository : IExpenseRepository
     /// </summary>
     /// <param name="walletId">The ID of the wallet.</param>
     /// <returns>A Task containing a list of Expense entities.</returns>
-    public async Task<List<Expense>> GetExpensesByWalletIdAsync(int walletId)
+    public async Task<List<Expense>> GetExpensesByWalletIdAsync(long walletId)
     {
         return await _context.Expenses.Where(e => e.Wallet.Id == walletId).ToListAsync();
     }
