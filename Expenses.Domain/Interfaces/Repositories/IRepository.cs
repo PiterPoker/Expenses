@@ -14,7 +14,7 @@ namespace Expenses.Domain.Interfaces.Repositories
         /// </summary>
         /// <param name="id">Идентификатор сущности.</param>
         /// <returns>Сущность или null, если сущность не найдена.</returns>
-        Task<T?> GetByIdAsync(int id);
+        Task<T?> GetByIdAsync(long id);
 
         /// <summary>
         /// Получает список всех сущностей.

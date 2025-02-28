@@ -15,7 +15,7 @@ public interface ICategoryFactory
     /// <param name="author">The author of the category.</param>
     /// <param name="color">An optional color for the category.</param>
     /// <returns>A new <see cref="Category"/> instance.</returns>
-    Category CreateCategory(string name, Author author, Color? color);
+    Category CreateCategory(string name, Author? author, Color? color);
 
 
     /// <summary>
@@ -25,5 +25,5 @@ public interface ICategoryFactory
     /// <param name="authorId">The ID of the author of the category.</param>
     /// <param name="color">An optional color for the category.</param>
     /// <returns>A new <see cref="Category"/> instance.</returns>
-    Task<Category> CreateCategory(string name, int authorId, Color? color);
+    Task<Category> CreateCategoryAsync(string name, long authorId, Color? color);
 }

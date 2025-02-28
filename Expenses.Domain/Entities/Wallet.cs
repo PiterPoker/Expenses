@@ -1,4 +1,5 @@
 ﻿using Expenses.Domain.SeedWork;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Expenses.Domain.Entities;
 
@@ -21,6 +22,7 @@ public class Wallet : Entity
     /// Creates a new Wallet.
     /// </summary>
     /// <param name="name">The name of the wallet.</param>
+    [SetsRequiredMembers]
     public Wallet(string name)
     {
         if (string.IsNullOrWhiteSpace(name))

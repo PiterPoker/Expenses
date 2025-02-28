@@ -1,4 +1,5 @@
 ﻿using Expenses.Domain.SeedWork;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Expenses.Domain.Entities;
 
@@ -21,6 +22,7 @@ public class Author : Entity
     /// Creates a new Author.
     /// </summary>
     /// <param name="name">The name of the author.</param>
+    [SetsRequiredMembers]
     public Author(string name)
     {
         if (string.IsNullOrWhiteSpace(name))

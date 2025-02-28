@@ -54,7 +54,7 @@ public class Expense : Entity
     /// <param name="wallet">The wallet from which the expense was made.</param>
     /// <param name="description">An optional description of the expense.</param>
     [SetsRequiredMembers]
-    public Expense(Money amount, DateTime transactionDate, Author author, Wallet wallet, Category category, string? description = null)
+    public Expense(Money amount, DateTime transactionDate, Author? author, Wallet? wallet, Category? category, string? description = null)
     {
         Amount = amount ?? throw new ArgumentNullException(nameof(amount));
         TransactionDate = transactionDate;
@@ -71,10 +71,10 @@ public class Expense : Entity
     /// <param name="amount">The new amount of the expense.</param>
     /// <param name="transactionDate">The new date and time of the expense.</param>
     /// <param name="description">The new optional description of the expense.</param>
-    public void Update(Money amount, DateTime transactionDate, Category category, string? description = null)
+    public void Update(Money amount, DateTime transactionDate, Category? category, string? description = null)
     {
         Amount = amount;
-        Category = category;
+        Category = category ?? throw new ArgumentNullException(nameof(category));
         TransactionDate = transactionDate;
         Description = description;
     }

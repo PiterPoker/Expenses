@@ -1,4 +1,5 @@
 ﻿using Expenses.Domain.Entities;
+using Expenses.Domain.Interfaces.Specifications;
 
 namespace Expenses.Domain.Interfaces.Repositories;
 
@@ -7,6 +8,7 @@ namespace Expenses.Domain.Interfaces.Repositories;
 /// </summary>
 public interface IExpenseRepository : IRepository<Expense>
 {
+    Task<List<Expense>> GetExpensesAsync(ISpecification<Expense> specification);
     /// <summary>
     /// Получает список расходов за определенный период времени.
     /// </summary>
@@ -20,12 +22,12 @@ public interface IExpenseRepository : IRepository<Expense>
     /// </summary>
     /// <param name="categoryId">Идентификатор категории.</param>
     /// <returns>Список расходов.</returns>
-    Task<List<Expense>> GetExpensesByCategoryIdAsync(int categoryId);
+    Task<List<Expense>> GetExpensesByCategoryIdAsync(long categoryId);
 
     /// <summary>
     /// Получает список расходов по определенному кошельку.
     /// </summary>
     /// <param name="walletId">Идентификатор кошелька.</param>
     /// <returns>Список расходов.</returns>
-    Task<List<Expense>> GetExpensesByWalletIdAsync(int walletId);
+    Task<List<Expense>> GetExpensesByWalletIdAsync(long walletId);
 }

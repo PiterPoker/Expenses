@@ -35,7 +35,7 @@ public class Category : Entity
     /// <param name="name">The name of the category.</param>
     /// <param name="color">The optional color of the category.</param>
     [SetsRequiredMembers]
-    public Category(string? name, Author author, Color? color = null)
+    public Category(string? name, Author? author, Color? color = null)
     {
         Name = name ?? throw new ArgumentNullException(nameof(name), "Category name cannot be null or whitespace.");
         Color = color;

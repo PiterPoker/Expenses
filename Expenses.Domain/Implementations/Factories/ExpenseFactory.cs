@@ -36,7 +36,7 @@ public class ExpenseFactory : IExpenseFactory
     /// <param name="walletId">The ID of the <see cref="Wallet"/> to associate with the expense.</param>
     /// <param name="authorId">The ID of the <see cref="Author"/> who created the expense.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The result is the created <see cref="Expense"/> entity.</returns>
-    public async Task<Expense> CreateExpense(int categoryId, decimal amount, string currency, DateTime transactionDate, int walletId, int authorId)
+    public async Task<Expense> CreateExpense(long categoryId, decimal amount, string currency, DateTime transactionDate, long walletId, long authorId)
     {
         var money = new Money(amount, currency);
         return await CreateExpense(categoryId, money, transactionDate, walletId, authorId, string.Empty);
@@ -53,7 +53,7 @@ public class ExpenseFactory : IExpenseFactory
     /// <param name="authorId">The ID of the <see cref="Author"/> who created the expense.</param>
     /// <param name="description">The description of the expense.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The result is the created <see cref="Expense"/> entity.</returns>
-    public async Task<Expense> CreateExpense(int categoryId, decimal amount, string currency, DateTime transactionDate, int walletId, int authorId, string description)
+    public async Task<Expense> CreateExpense(long categoryId, decimal amount, string currency, DateTime transactionDate, long walletId, long authorId, string? description)
     {
         var money = new Money(amount, currency);
         return await CreateExpense(categoryId, money, transactionDate, walletId, authorId, description);
@@ -69,7 +69,7 @@ public class ExpenseFactory : IExpenseFactory
     /// <param name="authorId">The ID of the <see cref="Author"/> who created the expense.</param>
     /// <param name="description">The description of the expense.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The result is the created <see cref="Expense"/> entity.</returns>
-    public async Task<Expense> CreateExpense(int categoryId, Money amount, DateTime transactionDate, int walletId, int authorId, string description)
+    public async Task<Expense> CreateExpense(long categoryId, Money amount, DateTime transactionDate, long walletId, long authorId, string? description)
     {
         var category = await _categoryRepository.GetByIdAsync(categoryId);
         var wallet = await _walletRepository.GetByIdAsync(walletId);

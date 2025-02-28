@@ -29,7 +29,7 @@ public class CategoryFactory : ICategoryFactory
     /// <param name="author">The <see cref="Author"/> entity associated with the category.</param>
     /// <param name="color">An optional <see cref="Color"/> for the category.</param>
     /// <returns>A new <see cref="Category"/> entity.</returns>
-    public Category CreateCategory(string name, Author author, Color? color)
+    public Category CreateCategory(string name, Author? author, Color? color)
     {
         return new Category(name, author, color);
     }
@@ -42,7 +42,7 @@ public class CategoryFactory : ICategoryFactory
     /// <param name="color">An optional <see cref="Color"/> for the category.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The result is the created <see cref="Category"/> entity.</returns>
     /// <exception cref="ArgumentException">Thrown when an author with the specified ID is not found.</exception>
-    public async Task<Category> CreateCategory(string name, int authorId, Color? color)
+    public async Task<Category> CreateCategoryAsync(string name, long authorId, Color? color)
     {
         var author = await _authorRepository.GetByIdAsync(authorId);
 
