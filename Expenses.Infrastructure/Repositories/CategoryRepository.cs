@@ -60,7 +60,7 @@ public class CategoryRepository : ICategoryRepository
     /// </summary>
     /// <param name="id">The Category ID.</param>
     /// <returns>The Category entity or null if not found.</returns>
-    public async Task<Category?> GetByIdAsync(int id)
+    public async Task<Category?> GetByIdAsync(long id)
     {
         return await _context.Categories.FindAsync(id);
     }

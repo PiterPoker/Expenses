@@ -70,7 +70,7 @@ public class AuthorRepository : IAuthorRepository
     /// </summary>
     /// <param name="id">The author's ID.</param>
     /// <returns>The Author entity or null if not found.</returns>
-    public async Task<Author?> GetByIdAsync(int id)
+    public async Task<Author?> GetByIdAsync(long id)
     {
         return await _context.Authors.FindAsync(id);
     }
