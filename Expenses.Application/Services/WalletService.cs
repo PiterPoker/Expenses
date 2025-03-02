@@ -23,7 +23,7 @@ public class WalletService : IWalletService
     /// <param name="mapper">The AutoMapper instance for object mapping.</param>
     /// <param name="unitOfWork">The Unit of Work for transactional operations.</param>
     /// <exception cref="ArgumentNullException">Thrown when either <paramref name="walletRepository"/> or <paramref name="mapper"/> is null.</exception>
-    public WalletService(IWalletRepository walletRepository, IMapper mapper, IUnitOfWork unitOfWork)
+    public WalletService(IWalletRepository walletRepository, IMapper mapper)
     {
         _walletRepository = walletRepository ?? throw new ArgumentNullException(nameof(walletRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
