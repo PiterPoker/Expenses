@@ -1,6 +1,8 @@
 ﻿using Expenses.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Drawing;
 
 namespace Expenses.Infrastructure.Configurations;
 
@@ -38,7 +40,13 @@ internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
         // - Specifies the column name "color".
         // - Allows null values.
         builder.Property(c => c.Color)
-            .HasColumnName("color");
+            .HasColumnName("color")
+            .IsRequired(false)
+            .HasConversion(new ValueConverter<Color?, string>(
+                v => v.HasValue ? v.Value.ToString() : null, // Преобразование Color? в строку
+                v => string.IsNullOrEmpty(v) ? (Color?)null : Enum.Parse<Color>(v) // Преобразование строки в Color?
+            ))
+            .HasMaxLength(100);
 
         // Configures the relationship with the Author entity:
         // - Specifies the foreign key property "AuthorId".

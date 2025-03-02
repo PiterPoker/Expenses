@@ -8,6 +8,7 @@ namespace Expenses.Domain.Entities;
 /// </summary>
 public class Money : ValueObject
 {
+    protected Money() { } // EF Core requires a parameterless constructor
     /// <summary>
     /// Gets the numerical value of the monetary amount.
     /// </summary>
