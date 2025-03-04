@@ -9,5 +9,7 @@ public class ExpensesByAuthorsSpecification : BaseSpecification<Expense>
         : base(e => authorIds.Contains(e.Author.Id))
     {
         AddInclude(e => e.Author);
+        AddInclude(e => e.Category);
+        AddInclude(e => e.Wallet);
     }
 }

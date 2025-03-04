@@ -72,7 +72,7 @@ public class ExpenseRepository : IExpenseRepository
     /// <returns>A Task containing a list of Expense entities.</returns>
     public async Task<List<Expense>> GetAllAsync()
     {
-        return await _context.Expenses.ToListAsync();
+        return await _context.Expenses.Include(e => e.Wallet).Include(e => e.Author).Include(e => e.Category).ThenInclude(eC => eC.Author).ToListAsync();
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ public class ExpenseRepository : IExpenseRepository
     /// <returns>A Task containing the Expense entity or null if not found.</returns>
     public async Task<Expense?> GetByIdAsync(long id)
     {
-        return await _context.Expenses.FindAsync(id);
+        return await _context.Expenses.Include(e => e.Wallet).Include(e => e.Author).Include(e => e.Category).ThenInclude(eC => eC.Author).FirstAsync(c => c.Id == id);
     }
 
     /// <summary>
@@ -92,7 +92,7 @@ public class ExpenseRepository : IExpenseRepository
     /// <returns>A Task containing a list of Expense entities.</returns>
     public async Task<List<Expense>> GetExpensesByCategoryIdAsync(long categoryId)
     {
-        return await _context.Expenses.Where(e => e.Category.Id == categoryId).ToListAsync();
+        return await _context.Expenses.Include(e => e.Wallet).Include(e => e.Author).Include(e => e.Category).ThenInclude(eC => eC.Author).Where(e => e.Category.Id == categoryId).ToListAsync();
     }
 
     /// <summary>
@@ -103,7 +103,7 @@ public class ExpenseRepository : IExpenseRepository
     /// <returns>A Task containing a list of Expense entities.</returns>
     public async Task<List<Expense>> GetExpensesByPeriodAsync(DateTime startDate, DateTime endDate)
     {
-        return await _context.Expenses.Where(e => e.TransactionDate >= startDate && e.TransactionDate <= endDate).ToListAsync();
+        return await _context.Expenses.Include(e => e.Wallet).Include(e => e.Author).Include(e => e.Category).ThenInclude(eC => eC.Author).Where(e => e.TransactionDate >= startDate && e.TransactionDate <= endDate).ToListAsync();
     }
 
     /// <summary>
@@ -113,7 +113,7 @@ public class ExpenseRepository : IExpenseRepository
     /// <returns>A Task containing a list of Expense entities.</returns>
     public async Task<List<Expense>> GetExpensesByWalletIdAsync(long walletId)
     {
-        return await _context.Expenses.Where(e => e.Wallet.Id == walletId).ToListAsync();
+        return await _context.Expenses.Include(e => e.Wallet).Include(e => e.Author).Include(e => e.Category).ThenInclude(eC => eC.Author).Where(e => e.Wallet.Id == walletId).ToListAsync();
     }
 
     /// <summary>

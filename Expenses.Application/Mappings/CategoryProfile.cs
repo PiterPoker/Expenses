@@ -19,21 +19,21 @@ public class CategoryProfile : Profile
         /// Maps <see cref="CreateCategoryDto"/> to <see cref="Category"/>, ignoring the Author property and mapping the Color property.
         /// </summary>
         CreateMap<CreateCategoryDto, Category>()
-            .ForMember(dest => dest.Author, opt => opt.Ignore())
-            .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color != null ? Enum.Parse<Color>(src.Color) : (Color?)null));
+            .ForMember(dest => dest.Author, opt => opt.Ignore());
+        //.ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color != null ? Color.FromName(src.Color) : (Color?)null));
 
         /// <summary>
         /// Maps <see cref="UpdateCategoryDto"/> to <see cref="Category"/>, ignoring the Author property and mapping the Color property.
         /// </summary>
-        CreateMap<UpdateCategoryDto, Category>()
-            .ForMember(dest => dest.Author, opt => opt.Ignore())
-            .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color != null ? Enum.Parse<Color>(src.Color) : (Color?)null));
+        CreateMap<UpdateCategoryDto, Category>();
+            //.ForMember(dest => dest.Author, opt => opt.Ignore());
+            //.ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color != null ? Color.FromName(src.Color) : (Color?)null));
 
         /// <summary>
         /// Maps <see cref="Category"/> to <see cref="CategoryDto"/>, mapping the AuthorId and Color properties.
         /// </summary>
         CreateMap<Category, CategoryDto>()
-            .ForMember(dest => dest.AuthorId, opt => opt.MapFrom(src => src.Author.Id))
-            .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color != null ? src.Color.ToString() : null));
+            .ForMember(dest => dest.AuthorId, opt => opt.MapFrom(src => src.Author.Id));
+            //.ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color.HasValue ? src.Color.Value.Name : null));
     }
 }

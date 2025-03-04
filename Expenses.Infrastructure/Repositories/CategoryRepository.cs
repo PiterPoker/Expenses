@@ -52,7 +52,7 @@ public class CategoryRepository : ICategoryRepository
     /// <returns>A list of Category entities.</returns>
     public async Task<List<Category>> GetAllAsync()
     {
-        return await _context.Categories.ToListAsync();
+        return await _context.Categories.Include(c => c.Author).ToListAsync();
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class CategoryRepository : ICategoryRepository
     /// <returns>The Category entity or null if not found.</returns>
     public async Task<Category?> GetByIdAsync(long id)
     {
-        return await _context.Categories.FindAsync(id);
+        return await _context.Categories.Include(c=>c.Author).FirstAsync(c=>c.Id == id);
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ public class CategoryRepository : ICategoryRepository
     /// <returns>The Category entity or null if not found.</returns>
     public async Task<Category?> GetCategoryByNameAsync(string name)
     {
-        return await _context.Categories.FirstOrDefaultAsync(c => c.Name == name);
+        return await _context.Categories.Include(c => c.Author).FirstOrDefaultAsync(c => c.Name == name);
     }
 
     /// <summary>
