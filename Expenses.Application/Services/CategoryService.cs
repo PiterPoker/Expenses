@@ -85,7 +85,8 @@ public class CategoryService : ICategoryService
         try
         {
             var category = await _categoryRepository.GetByIdAsync(id) ?? throw new CategoryNotFoundException(id);
-            _mapper.Map(dto, category);
+            var colorDto = _mapper.Map<Color>(dto.Color);
+            category.Update(dto.Name, colorDto);
 
             await _categoryRepository.UpdateAsync(category);
             await _categoryRepository.UnitOfWork.SaveEntitiesAsync();

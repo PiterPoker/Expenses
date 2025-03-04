@@ -69,6 +69,7 @@ internal static class CustomServicesExtensions
         services.AddAutoMapper(typeof(CategoryProfile));
         services.AddAutoMapper(typeof(ExpenseProfile));
         services.AddAutoMapper(typeof(WalletProfile));
+        services.AddAutoMapper(typeof(ColorProfile));
 
         return services;
     }

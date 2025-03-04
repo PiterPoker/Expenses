@@ -43,8 +43,8 @@ internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
             .HasColumnName("color")
             .IsRequired(false)
             .HasConversion(new ValueConverter<Color?, string>(
-                v => v.HasValue ? v.Value.ToString() : null, // Преобразование Color? в строку
-                v => string.IsNullOrEmpty(v) ? (Color?)null : Enum.Parse<Color>(v) // Преобразование строки в Color?
+                v => v.HasValue ? v.Value.Name : null, // Преобразование Color? в строку
+                v => string.IsNullOrEmpty(v) ? (Color?)null : Color.FromName(v) // Преобразование строки в Color?
             ))
             .HasMaxLength(100);
 
