@@ -1,4 +1,5 @@
-﻿using Expenses.Application.Interfaces.Services;
+﻿using System.Reflection;
+using Expenses.Application.Interfaces.Services;
 using Expenses.Application.Mappings;
 using Expenses.Application.Services;
 using Expenses.Domain.Implementations.Factories;
@@ -6,6 +7,7 @@ using Expenses.Domain.Interfaces.Factories;
 using Expenses.Domain.Interfaces.Repositories;
 using Expenses.Infrastructure;
 using Expenses.Infrastructure.Repositories;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 namespace Expenses.API;
@@ -108,6 +110,28 @@ internal static class CustomServicesExtensions
     {
         services.AddScoped<ICategoryFactory, CategoryFactory>();
         services.AddScoped<IExpenseFactory, ExpenseFactory>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddCustomMassTransit(this IServiceCollection services) 
+    {
+        services.AddMassTransit(x =>
+        {
+            x.AddConsumers(Assembly.GetEntryAssembly());
+            x.UsingRabbitMq((context, cfg) =>
+            {
+                //TO-DO Environment.GetEnvironmentVariable("") - hostname, virtual host, username, password
+                cfg.Host("rabbitmq", "/", h =>
+                {
+                    h.Username("guest");
+                    h.Password("guest");
+                });
+
+                cfg.UseMessageRetry(r => r.Interval(3, TimeSpan.FromSeconds(5)));
+                cfg.ConfigureEndpoints(context);
+            });
+        });
 
         return services;
     }

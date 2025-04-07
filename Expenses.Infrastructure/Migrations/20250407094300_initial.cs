@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Expenses.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,32 +14,12 @@ namespace Expenses.Infrastructure.Migrations
             migrationBuilder.EnsureSchema(
                 name: "expense");
 
-            migrationBuilder.CreateSequence(
-                name: "author_seq",
-                schema: "expense",
-                incrementBy: 10);
-
-            migrationBuilder.CreateSequence(
-                name: "category_seq",
-                schema: "expense",
-                incrementBy: 10);
-
-            migrationBuilder.CreateSequence(
-                name: "expense_seq",
-                schema: "expense",
-                incrementBy: 10);
-
-            migrationBuilder.CreateSequence(
-                name: "wallet_seq",
-                schema: "expense",
-                incrementBy: 10);
-
             migrationBuilder.CreateTable(
                 name: "authors",
                 schema: "expense",
                 columns: table => new
                 {
-                    id = table.Column<long>(type: "bigint", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
@@ -52,7 +32,7 @@ namespace Expenses.Infrastructure.Migrations
                 schema: "expense",
                 columns: table => new
                 {
-                    id = table.Column<long>(type: "bigint", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
@@ -65,9 +45,9 @@ namespace Expenses.Infrastructure.Migrations
                 schema: "expense",
                 columns: table => new
                 {
-                    id = table.Column<long>(type: "bigint", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    author_id = table.Column<long>(type: "bigint", nullable: false),
+                    author_id = table.Column<Guid>(type: "uuid", nullable: false),
                     color = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
@@ -87,14 +67,14 @@ namespace Expenses.Infrastructure.Migrations
                 schema: "expense",
                 columns: table => new
                 {
-                    id = table.Column<long>(type: "bigint", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     amount = table.Column<decimal>(type: "numeric", nullable: false),
                     currency = table.Column<string>(type: "text", nullable: false),
                     transaction_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     description = table.Column<string>(type: "text", nullable: true),
-                    author_id = table.Column<long>(type: "bigint", nullable: false),
-                    wallet_id = table.Column<long>(type: "bigint", nullable: false),
-                    category_id = table.Column<long>(type: "bigint", nullable: false)
+                    author_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    wallet_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    category_id = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -164,22 +144,6 @@ namespace Expenses.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "authors",
-                schema: "expense");
-
-            migrationBuilder.DropSequence(
-                name: "author_seq",
-                schema: "expense");
-
-            migrationBuilder.DropSequence(
-                name: "category_seq",
-                schema: "expense");
-
-            migrationBuilder.DropSequence(
-                name: "expense_seq",
-                schema: "expense");
-
-            migrationBuilder.DropSequence(
-                name: "wallet_seq",
                 schema: "expense");
         }
     }

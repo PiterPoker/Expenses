@@ -16,7 +16,10 @@ public class ExpensesContext : DbContext, IUnitOfWork
     /// Database context constructor.
     /// </summary>
     /// <param name="options">Database context configuration options.</param>
-    public ExpensesContext(DbContextOptions<ExpensesContext> options) : base(options) { }
+    public ExpensesContext(DbContextOptions<ExpensesContext> options) : base(options) 
+    {
+        Database.EnsureCreated();
+    }
 
     /// <summary>
     /// Data set for the Expense entity.
