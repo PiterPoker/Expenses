@@ -57,7 +57,7 @@ public class WalletsController : ControllerBase
     [ProducesResponseType(typeof(WalletDto), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
     [SwaggerOperation(Summary = "Retrieves a wallet by ID")]
-    public async Task<ActionResult<WalletDto>> GetWalletById([SwaggerParameter(Description = "The unique identifier of the wallet")] long id)
+    public async Task<ActionResult<WalletDto>> GetWalletById([SwaggerParameter(Description = "The unique identifier of the wallet")] Guid id)
     {
         try
         {
@@ -107,7 +107,7 @@ public class WalletsController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [SwaggerOperation(Summary = "Updates an existing wallet by ID")]
     public async Task<IActionResult> UpdateWallet(
-        [SwaggerParameter(Description = "The unique identifier of the wallet to update")] long id,
+        [SwaggerParameter(Description = "The unique identifier of the wallet to update")] Guid id,
         [SwaggerRequestBody(Description = "Data for updating the wallet")] UpdateWalletDto dto)
     {
         if (!ModelState.IsValid)
@@ -134,7 +134,7 @@ public class WalletsController : ControllerBase
     [HttpDelete("{id:long}")]
     [ProducesResponseType((int)HttpStatusCode.NoContent)]
     [SwaggerOperation(Summary = "Deletes a wallet by ID")]
-    public async Task<IActionResult> DeleteWallet([SwaggerParameter(Description = "The unique identifier of the wallet to delete")] long id)
+    public async Task<IActionResult> DeleteWallet([SwaggerParameter(Description = "The unique identifier of the wallet to delete")] Guid id)
     {
         try
         {

@@ -57,7 +57,7 @@ public class AuthorsController : ControllerBase
     [ProducesResponseType(typeof(AuthorDto), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
     [SwaggerOperation(Summary = "Retrieves an author by ID")]
-    public async Task<ActionResult<AuthorDto>> GetAuthorById([SwaggerParameter(Description = "The unique identifier of the author")] long id)
+    public async Task<ActionResult<AuthorDto>> GetAuthorById([SwaggerParameter(Description = "The unique identifier of the author")] Guid id)
     {
         try
         {
@@ -87,7 +87,7 @@ public class AuthorsController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
     [SwaggerOperation(Summary = "Updates an existing author by ID")]
     public async Task<IActionResult> UpdateAuthor(
-    [SwaggerParameter(Description = "The unique identifier of the author to update")] long id,
+    [SwaggerParameter(Description = "The unique identifier of the author to update")] Guid id,
     [SwaggerRequestBody(Description = "Data for updating the author")] UpdateAuthorDto dto)
     {
         if (!ModelState.IsValid)
@@ -114,7 +114,7 @@ public class AuthorsController : ControllerBase
     [HttpDelete("{id:long}")]
     [ProducesResponseType((int)HttpStatusCode.NoContent)]
     [SwaggerOperation(Summary = "Deletes an author by ID")]
-    public async Task<IActionResult> DeleteAuthor([SwaggerParameter(Description = "The unique identifier of the author to delete")] long id)
+    public async Task<IActionResult> DeleteAuthor([SwaggerParameter(Description = "The unique identifier of the author to delete")] Guid id)
     {
         try
         {
