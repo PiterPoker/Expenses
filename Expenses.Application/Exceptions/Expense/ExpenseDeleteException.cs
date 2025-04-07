@@ -10,7 +10,7 @@ public class ExpenseDeleteException : Exception
     /// </summary>
     /// <param name="id">The ID of the expense that failed to delete.</param>
     /// <param name="message">The message that describes the error during deletion.</param>
-    public ExpenseDeleteException(long id, string message) : base($"Failed to delete expense with ID {id}. {message}") { }
+    public ExpenseDeleteException(Guid id, string message) : base($"Failed to delete expense with ID {id}. {message}") { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ExpenseDeleteException"/> class with a specified expense ID, error message, and inner exception.
@@ -18,5 +18,5 @@ public class ExpenseDeleteException : Exception
     /// <param name="id">The ID of the expense that failed to delete.</param>
     /// <param name="message">The message that describes the error during deletion.</param>
     /// <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified.</param>
-    public ExpenseDeleteException(long id, string message, Exception innerException) : base($"Failed to delete expense with ID {id}. {message}", innerException) { }
+    public ExpenseDeleteException(Guid id, string message, Exception innerException) : base($"Failed to delete expense with ID {id}. {message}", innerException) { }
 }

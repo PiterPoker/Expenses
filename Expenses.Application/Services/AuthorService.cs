@@ -45,7 +45,7 @@ public class AuthorService : IAuthorService
     /// <param name="id">The ID of the author.</param>
     /// <returns>Author DTO or null if the author is not found.</returns>
     /// <exception cref="AuthorNotFoundException">Thrown when the author is not found.</exception>
-    public async Task<AuthorDto?> GetAuthorByIdAsync(long id)
+    public async Task<AuthorDto?> GetAuthorByIdAsync(Guid id)
     {
         var author = await _authorRepository.GetByIdAsync(id);
 
@@ -60,7 +60,7 @@ public class AuthorService : IAuthorService
     /// <param name="dto">DTO for updating an author.</param>
     /// <exception cref="AuthorNotFoundException">Thrown when the author is not found.</exception>
     /// <exception cref="AuthorUpdateException">Thrown when an error occurs while updating the author.</exception>
-    public async Task UpdateAuthorAsync(long authorId, UpdateAuthorDto dto)
+    public async Task UpdateAuthorAsync(Guid authorId, UpdateAuthorDto dto)
     {
         try
         {
@@ -85,7 +85,7 @@ public class AuthorService : IAuthorService
     /// <param name="id">The ID of the author.</param>
     /// <exception cref="AuthorNotFoundException">Thrown when the author is not found.</exception>
     /// <exception cref="AuthorDeleteException">Thrown when an error occurs while deleting the author.</exception>
-    public async Task DeleteAuthorAsync(long id)
+    public async Task DeleteAuthorAsync(Guid id)
     {
         try
         {

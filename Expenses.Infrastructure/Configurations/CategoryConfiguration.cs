@@ -24,8 +24,8 @@ internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
         // - Specifies the column name "id".
         // - Uses the HiLo key generation strategy with the sequence name "category_seq".
         builder.Property(c => c.Id)
-            .HasColumnName("id")
-            .UseHiLo("category_seq");
+            .HasColumnName("id");
+        //    .UseHiLo("category_seq");
 
         // Configures the Name property:
         // - Specifies the column name "name".

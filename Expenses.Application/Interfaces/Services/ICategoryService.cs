@@ -19,7 +19,7 @@ public interface ICategoryService
     /// </summary>
     /// <param name="id">The unique identifier of the Category.</param>
     /// <returns>A Task containing the Category's Data Transfer Object, or null if not found.</returns>
-    Task<CategoryDto?> GetCategoryByIdAsync(long id);
+    Task<CategoryDto?> GetCategoryByIdAsync(Guid id);
 
     /// <summary>
     /// Asynchronously retrieves all Categories.
@@ -33,12 +33,12 @@ public interface ICategoryService
     /// <param name="id">The unique identifier of the Category to update.</param>
     /// <param name="dto">The Data Transfer Object containing the Category's updated details.</param>
     /// <returns>A Task representing the asynchronous operation.</returns>
-    Task UpdateCategoryAsync(long id, UpdateCategoryDto dto);
+    Task UpdateCategoryAsync(Guid id, UpdateCategoryDto dto);
 
     /// <summary>
     /// Asynchronously deletes a Category by its unique identifier.
     /// </summary>
     /// <param name="id">The unique identifier of the Category to delete.</param>
     /// <returns>A Task representing the asynchronous operation.</returns>
-    Task DeleteCategoryAsync(long id);
+    Task DeleteCategoryAsync(Guid id);
 }

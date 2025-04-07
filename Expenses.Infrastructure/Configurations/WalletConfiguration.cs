@@ -22,8 +22,8 @@ internal class WalletConfiguration : IEntityTypeConfiguration<Wallet>
         // - Specifies the column name "id".
         // - Uses the HiLo key generation strategy with the sequence name "wallet_seq".
         builder.Property(w => w.Id)
-            .HasColumnName("id")
-            .UseHiLo("wallet_seq");
+            .HasColumnName("id");
+        //    .UseHiLo("wallet_seq");
 
         // Configures the Name property:
         // - Specifies the column name "name".

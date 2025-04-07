@@ -9,5 +9,5 @@ public class CategoryNotFoundException : Exception
     /// Initializes a new instance of the <see cref="CategoryNotFoundException"/> class with a specified category ID.
     /// </summary>
     /// <param name="id">The ID of the category that was not found.</param>
-    public CategoryNotFoundException(long id) : base($"Category with ID {id} not found.") { }
+    public CategoryNotFoundException(Guid id) : base($"Category with ID {id} not found.") { }
 }

@@ -42,7 +42,7 @@ public class CategoryFactory : ICategoryFactory
     /// <param name="color">An optional <see cref="Color"/> for the category.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The result is the created <see cref="Category"/> entity.</returns>
     /// <exception cref="ArgumentException">Thrown when an author with the specified ID is not found.</exception>
-    public async Task<Category> CreateCategoryAsync(string name, long authorId, Color? color)
+    public async Task<Category> CreateCategoryAsync(string name, Guid authorId, Color? color)
     {
         var author = await _authorRepository.GetByIdAsync(authorId);
 

@@ -19,7 +19,7 @@ public interface IWalletService
     /// </summary>
     /// <param name="id">The unique identifier of the Wallet.</param>
     /// <returns>A Task containing the Wallet's Data Transfer Object, or throws an exception if not found.</returns>
-    Task<WalletDto?> GetWalletByIdAsync(long id);
+    Task<WalletDto?> GetWalletByIdAsync(Guid id);
 
     /// <summary>
     /// Asynchronously retrieves all Wallets.
@@ -32,12 +32,12 @@ public interface IWalletService
     /// </summary>
     /// <param name="dto">The Data Transfer Object containing the Wallet's updated details.</param>
     /// <returns>A Task representing the asynchronous operation.</returns>
-    Task UpdateWalletAsync(long walletId, UpdateWalletDto dto);
+    Task UpdateWalletAsync(Guid walletId, UpdateWalletDto dto);
 
     /// <summary>
     /// Asynchronously deletes a Wallet by its unique identifier.
     /// </summary>
     /// <param name="id">The unique identifier of the Wallet to delete.</param>
     /// <returns>A Task representing the asynchronous operation.</returns>
-    Task DeleteWalletAsync(long id);
+    Task DeleteWalletAsync(Guid id);
 }

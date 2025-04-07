@@ -7,6 +7,8 @@ namespace Expenses.Application.DTOs.Wallet;
 /// </summary>
 public record CreateWalletDto
 {
+    public Guid Id { get; init; }
+
     /// <summary>
     /// Gets the name of the Wallet to be created.
     /// </summary>

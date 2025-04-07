@@ -8,7 +8,7 @@ public record AuthorDto
     /// <summary>
     /// Gets the unique identifier of the Author.
     /// </summary>
-    public long Id { get; init; }
+    public Guid Id { get; init; }
 
     /// <summary>
     /// Gets the name of the Author.

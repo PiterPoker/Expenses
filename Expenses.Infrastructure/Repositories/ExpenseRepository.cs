@@ -80,7 +80,7 @@ public class ExpenseRepository : IExpenseRepository
     /// </summary>
     /// <param name="id">The ID of the Expense entity.</param>
     /// <returns>A Task containing the Expense entity or null if not found.</returns>
-    public async Task<Expense?> GetByIdAsync(long id)
+    public async Task<Expense?> GetByIdAsync(Guid id)
     {
         return await _context.Expenses.Include(e => e.Wallet).Include(e => e.Author).Include(e => e.Category).ThenInclude(eC => eC.Author).FirstAsync(c => c.Id == id);
     }
@@ -90,7 +90,7 @@ public class ExpenseRepository : IExpenseRepository
     /// </summary>
     /// <param name="categoryId">The ID of the category.</param>
     /// <returns>A Task containing a list of Expense entities.</returns>
-    public async Task<List<Expense>> GetExpensesByCategoryIdAsync(long categoryId)
+    public async Task<List<Expense>> GetExpensesByCategoryIdAsync(Guid categoryId)
     {
         return await _context.Expenses.Include(e => e.Wallet).Include(e => e.Author).Include(e => e.Category).ThenInclude(eC => eC.Author).Where(e => e.Category.Id == categoryId).ToListAsync();
     }
@@ -111,7 +111,7 @@ public class ExpenseRepository : IExpenseRepository
     /// </summary>
     /// <param name="walletId">The ID of the wallet.</param>
     /// <returns>A Task containing a list of Expense entities.</returns>
-    public async Task<List<Expense>> GetExpensesByWalletIdAsync(long walletId)
+    public async Task<List<Expense>> GetExpensesByWalletIdAsync(Guid walletId)
     {
         return await _context.Expenses.Include(e => e.Wallet).Include(e => e.Author).Include(e => e.Category).ThenInclude(eC => eC.Author).Where(e => e.Wallet.Id == walletId).ToListAsync();
     }

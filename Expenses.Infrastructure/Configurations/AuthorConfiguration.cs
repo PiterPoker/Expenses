@@ -22,8 +22,8 @@ internal class AuthorConfiguration : IEntityTypeConfiguration<Author>
         // - Specifies the column name "id".
         // - Uses the HiLo key generation strategy with the sequence name "author_seq".
         builder.Property(o => o.Id)
-            .HasColumnName("id")
-            .UseHiLo("author_seq");
+            .HasColumnName("id");
+        //    .UseHiLo("author_seq");
 
         // Configures the Name property:
         // - Specifies the column name "name".

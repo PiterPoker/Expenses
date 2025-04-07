@@ -22,8 +22,8 @@ internal class ExpenseConfiguration : IEntityTypeConfiguration<Expense>
         // - Specifies the column name "id".
         // - Uses the HiLo key generation strategy with the sequence name "expense_seq".
         builder.Property(e => e.Id)
-            .HasColumnName("id")
-            .UseHiLo("expense_seq");
+            .HasColumnName("id");
+        //    .UseHiLo("expense_seq");
 
         // Configures the TransactionDate property:
         // - Specifies the column name "transaction_date".
