@@ -10,6 +10,7 @@ builder.Services.AddCustomServices();
 builder.Services.AddCustomFactories();
 builder.Services.AddCustomSwagger();
 builder.Services.AddCustomMapping();
+builder.Services.AddCustomMassTransit();
 
 var app = builder.Build();
 
