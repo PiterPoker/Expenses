@@ -48,7 +48,7 @@ public class WalletService : IWalletService
     /// <param name="id">The ID of the Wallet to retrieve.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation, with the retrieved <see cref="WalletDto"/>.</returns>
     /// <exception cref="WalletNotFoundException">Thrown when a Wallet with the specified ID is not found.</exception>
-    public async Task<WalletDto?> GetWalletByIdAsync(long id)
+    public async Task<WalletDto?> GetWalletByIdAsync(Guid id)
     {
         var wallet = await _walletRepository.GetByIdAsync(id) ?? throw new WalletNotFoundException(id);
         return _mapper.Map<WalletDto>(wallet);
@@ -71,7 +71,7 @@ public class WalletService : IWalletService
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="WalletNotFoundException">Thrown when a Wallet with the specified ID is not found.</exception>
     /// <exception cref="WalletUpdateException">Thrown when an error occurs during the Wallet update.</exception>
-    public async Task UpdateWalletAsync(long authorId, UpdateWalletDto dto)
+    public async Task UpdateWalletAsync(Guid authorId, UpdateWalletDto dto)
     {
         try
         {
@@ -97,7 +97,7 @@ public class WalletService : IWalletService
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="WalletNotFoundException">Thrown when a Wallet with the specified ID is not found.</exception>
     /// <exception cref="WalletDeleteException">Thrown when an error occurs during the Wallet deletion.</exception>
-    public async Task DeleteWalletAsync(long id)
+    public async Task DeleteWalletAsync(Guid id)
     {
         try
         {

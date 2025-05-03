@@ -35,7 +35,7 @@ public class ExpenseService : IExpenseService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<List<ExpenseDto>> GetExpensesByAuthorsAsync(List<long> authorIds)
+    public async Task<List<ExpenseDto>> GetExpensesByAuthorsAsync(List<Guid> authorIds)
     {
         var specification = new ExpensesByAuthorsSpecification(authorIds);
         var expenses = await _expenseRepository.GetExpensesAsync(specification);
@@ -71,7 +71,7 @@ public class ExpenseService : IExpenseService
     /// <returns>The updated expense DTO, or null if an error occurs.</returns>
     /// <exception cref="ExpenseNotFoundException">Thrown when the expense with the specified ID is not found.</exception>
     /// <exception cref="Exception">Thrown when an unexpected error occurs during expense update.</exception>
-    public async Task<ExpenseDto?> UpdateExpenseAsync(long expenseId, UpdateExpenseDto updateExpenseDto)
+    public async Task<ExpenseDto?> UpdateExpenseAsync(Guid expenseId, UpdateExpenseDto updateExpenseDto)
     {
         try
         {
@@ -97,7 +97,7 @@ public class ExpenseService : IExpenseService
     /// </summary>
     /// <param name="expenseId">The ID of the expense to delete.</param>
     /// <exception cref="Exception">Thrown when an unexpected error occurs during expense deletion.</exception>
-    public async Task DeleteExpenseAsync(long expenseId)
+    public async Task DeleteExpenseAsync(Guid expenseId)
     {
         try
         {
@@ -121,7 +121,7 @@ public class ExpenseService : IExpenseService
     /// <returns>The expense DTO, or null if not found or an error occurs.</returns>
     /// <exception cref="ExpenseNotFoundException">Thrown when the expense with the specified ID is not found.</exception>
     /// <exception cref="Exception">Thrown when an unexpected error occurs during expense retrieval.</exception>
-    public async Task<ExpenseDto?> GetExpenseByIdAsync(long expenseId)
+    public async Task<ExpenseDto?> GetExpenseByIdAsync(Guid expenseId)
     {
         try
         {
@@ -143,7 +143,7 @@ public class ExpenseService : IExpenseService
     /// </summary>
     /// <param name="categoryId">The ID of the category to filter expenses by.</param>
     /// <returns>A list of expense DTOs.</returns>
-    public async Task<List<ExpenseDto>> GetExpensesByCategoryIdAsync(long categoryId)
+    public async Task<List<ExpenseDto>> GetExpensesByCategoryIdAsync(Guid categoryId)
     {
         var expenses = await _expenseRepository.GetExpensesByCategoryIdAsync(categoryId);
         return _mapper.Map<List<ExpenseDto>>(expenses);
@@ -166,7 +166,7 @@ public class ExpenseService : IExpenseService
     /// </summary>
     /// <param name="walletId">The ID of the wallet to filter expenses by.</param>
     /// <returns>A list of expense DTOs.</returns>
-    public async Task<List<ExpenseDto>> GetExpensesByWalletIdAsync(long walletId)
+    public async Task<List<ExpenseDto>> GetExpensesByWalletIdAsync(Guid walletId)
     {
         var expenses = await _expenseRepository.GetExpensesByWalletIdAsync(walletId);
         return _mapper.Map<List<ExpenseDto>>(expenses);

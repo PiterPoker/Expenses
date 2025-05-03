@@ -17,7 +17,7 @@ public interface IExpenseFactory
     /// <param name="walletId">The ID of the <see cref="Wallet"/> from which the expense was made.</param>
     /// <param name="authorId">The ID of the <see cref="Author"/> who created the expense.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The result is the created <see cref="Expense"/> entity.</returns>
-    Task<Expense> CreateExpense(long categoryId, decimal amount, string currency, DateTime transactionDate, long walletId, long authorId);
+    Task<Expense> CreateExpense(Guid categoryId, decimal amount, string currency, DateTime transactionDate, Guid walletId, Guid authorId);
 
     /// <summary>
     /// Creates a new <see cref="Expense"/> instance asynchronously with a description.
@@ -30,7 +30,7 @@ public interface IExpenseFactory
     /// <param name="authorId">The ID of the <see cref="Author"/> who created the expense.</param>
     /// <param name="description">The description of the expense.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The result is the created <see cref="Expense"/> entity.</returns>
-    Task<Expense> CreateExpense(long categoryId, decimal amount, string currency, DateTime transactionDate, long walletId, long authorId, string? description);
+    Task<Expense> CreateExpense(Guid categoryId, decimal amount, string currency, DateTime transactionDate, Guid walletId, Guid authorId, string? description);
 
     /// <summary>
     /// Creates a new <see cref="Expense"/> instance asynchronously using a <see cref="Money"/> object.
@@ -42,5 +42,5 @@ public interface IExpenseFactory
     /// <param name="authorId">The ID of the <see cref="Author"/> who created the expense.</param>
     /// <param name="description">The description of the expense.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The result is the created <see cref="Expense"/> entity.</returns>
-    Task<Expense> CreateExpense(long categoryId, Money amount, DateTime transactionDate, long walletId, long authorId, string? description);
+    Task<Expense> CreateExpense(Guid categoryId, Money amount, DateTime transactionDate, Guid walletId, Guid authorId, string? description);
 }

@@ -10,7 +10,7 @@ public class WalletDeleteException : Exception
     /// </summary>
     /// <param name="id">The ID of the wallet that failed to be deleted.</param>
     /// <param name="message">The message that describes the error.</param>
-    public WalletDeleteException(long id, string message) : base($"Failed to delete wallet with ID {id}. {message}") { }
+    public WalletDeleteException(Guid id, string message) : base($"Failed to delete wallet with ID {id}. {message}") { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="WalletDeleteException"/> class with a specified wallet ID, error message, and inner exception.
@@ -18,5 +18,5 @@ public class WalletDeleteException : Exception
     /// <param name="id">The ID of the wallet that failed to be deleted.</param>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified.</param>
-    public WalletDeleteException(long id, string message, Exception innerException) : base($"Failed to delete wallet with ID {id}. {message}", innerException) { }
+    public WalletDeleteException(Guid id, string message, Exception innerException) : base($"Failed to delete wallet with ID {id}. {message}", innerException) { }
 }

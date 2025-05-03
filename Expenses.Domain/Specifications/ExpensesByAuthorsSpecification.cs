@@ -5,7 +5,7 @@ namespace Expenses.Domain.Specifications;
 
 public class ExpensesByAuthorsSpecification : BaseSpecification<Expense>
 {
-    public ExpensesByAuthorsSpecification(List<long> authorIds)
+    public ExpensesByAuthorsSpecification(List<Guid> authorIds)
         : base(e => authorIds.Contains(e.Author.Id))
     {
         AddInclude(e => e.Author);

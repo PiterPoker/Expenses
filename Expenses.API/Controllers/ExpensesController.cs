@@ -58,7 +58,7 @@ public class ExpensesController : ControllerBase
     [ProducesResponseType(typeof(ExpenseDto), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
     [SwaggerOperation(Summary = "Retrieves an expense by ID")]
-    public async Task<ActionResult<ExpenseDto>> GetExpenseById([SwaggerParameter(Description = "The unique identifier of the expense")] long expenseId)
+    public async Task<ActionResult<ExpenseDto>> GetExpenseById([SwaggerParameter(Description = "The unique identifier of the expense")] Guid expenseId)
     {
         try
         {
@@ -87,7 +87,7 @@ public class ExpensesController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [SwaggerOperation(Summary = "Updates an existing expense by ID")]
     public async Task<ActionResult<ExpenseDto>> UpdateExpense(
-        [SwaggerParameter(Description = "The unique identifier of the expense to update")] long expenseId,
+        [SwaggerParameter(Description = "The unique identifier of the expense to update")] Guid expenseId,
         [SwaggerRequestBody(Description = "Data for updating the expense")] UpdateExpenseDto dto)
     {
         if (!ModelState.IsValid)
@@ -120,7 +120,7 @@ public class ExpensesController : ControllerBase
     [HttpDelete("{expenseId:long}")]
     [ProducesResponseType((int)HttpStatusCode.NoContent)]
     [SwaggerOperation(Summary = "Deletes an expense by ID")]
-    public async Task<IActionResult> DeleteExpense([SwaggerParameter(Description = "The unique identifier of the expense to delete")] long expenseId)
+    public async Task<IActionResult> DeleteExpense([SwaggerParameter(Description = "The unique identifier of the expense to delete")] Guid expenseId)
     {
         try
         {
@@ -141,7 +141,7 @@ public class ExpensesController : ControllerBase
     [HttpGet("authors")]
     [ProducesResponseType(typeof(List<ExpenseDto>), (int)HttpStatusCode.OK)]
     [SwaggerOperation(Summary = "Retrieves expenses by author IDs")]
-    public async Task<ActionResult<List<ExpenseDto>>> GetExpensesByAuthors([FromQuery] List<long> authorIds)
+    public async Task<ActionResult<List<ExpenseDto>>> GetExpensesByAuthors([FromQuery] List<Guid> authorIds)
     {
         try
         {
@@ -162,7 +162,7 @@ public class ExpensesController : ControllerBase
     [HttpGet("category/{categoryId:long}")]
     [ProducesResponseType(typeof(List<ExpenseDto>), (int)HttpStatusCode.OK)]
     [SwaggerOperation(Summary = "Retrieves expenses by category ID")]
-    public async Task<ActionResult<List<ExpenseDto>>> GetExpensesByCategoryId([SwaggerParameter(Description = "The unique identifier of the category")] long categoryId)
+    public async Task<ActionResult<List<ExpenseDto>>> GetExpensesByCategoryId([SwaggerParameter(Description = "The unique identifier of the category")] Guid categoryId)
     {
         try
         {
@@ -204,7 +204,7 @@ public class ExpensesController : ControllerBase
     [HttpGet("wallet/{walletId:long}")]
     [ProducesResponseType(typeof(List<ExpenseDto>), (int)HttpStatusCode.OK)]
     [SwaggerOperation(Summary = "Retrieves expenses by wallet ID")]
-    public async Task<ActionResult<List<ExpenseDto>>> GetExpensesByWalletId([SwaggerParameter(Description = "The unique identifier of the wallet")] long walletId)
+    public async Task<ActionResult<List<ExpenseDto>>> GetExpensesByWalletId([SwaggerParameter(Description = "The unique identifier of the wallet")] Guid walletId)
     {
         try
         {

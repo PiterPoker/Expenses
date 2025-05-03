@@ -53,7 +53,7 @@ public class CategoryService : ICategoryService
     /// </summary>
     /// <param name="id">The ID of the Category to retrieve.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation, with the retrieved <see cref="CategoryDto"/>, or null if not found.</returns>
-    public async Task<CategoryDto?> GetCategoryByIdAsync(long id)
+    public async Task<CategoryDto?> GetCategoryByIdAsync(Guid id)
     {
         var category = await _categoryRepository.GetByIdAsync(id);
 
@@ -80,7 +80,7 @@ public class CategoryService : ICategoryService
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="CategoryNotFoundException">Thrown when the specified category is not found.</exception>
     /// <exception cref="CategoryUpdateException">Thrown when an error occurs during the Category update.</exception>
-    public async Task UpdateCategoryAsync(long id, UpdateCategoryDto dto)
+    public async Task UpdateCategoryAsync(Guid id, UpdateCategoryDto dto)
     {
         try
         {
@@ -108,7 +108,7 @@ public class CategoryService : ICategoryService
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="CategoryNotFoundException">Thrown when the specified category is not found.</exception>
     /// <exception cref="CategoryDeleteException">Thrown when an error occurs during the Category deletion.</exception>
-    public async Task DeleteCategoryAsync(long id)
+    public async Task DeleteCategoryAsync(Guid id)
     {
         try
         {

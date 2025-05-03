@@ -9,5 +9,5 @@ public class AuthorNotFoundException : Exception
     /// Initializes a new instance of the <see cref="AuthorNotFoundException"/> class with a specified Author ID.
     /// </summary>
     /// <param name="id">The ID of the Author that was not found.</param>
-    public AuthorNotFoundException(long id) : base($"Author with id {id} not found.") { }
+    public AuthorNotFoundException(Guid id) : base($"Author with id {id} not found.") { }
 }

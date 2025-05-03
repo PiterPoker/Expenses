@@ -60,7 +60,7 @@ public class WalletRepository : IWalletRepository
     /// </summary>
     /// <param name="id">The Wallet ID.</param>
     /// <returns>The Wallet entity or null if not found.</returns>
-    public async Task<Wallet?> GetByIdAsync(long id)
+    public async Task<Wallet?> GetByIdAsync(Guid id)
     {
         return await _context.Wallets.FindAsync(id);
     }

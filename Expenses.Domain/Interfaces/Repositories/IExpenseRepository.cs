@@ -22,12 +22,12 @@ public interface IExpenseRepository : IRepository<Expense>
     /// </summary>
     /// <param name="categoryId">Идентификатор категории.</param>
     /// <returns>Список расходов.</returns>
-    Task<List<Expense>> GetExpensesByCategoryIdAsync(long categoryId);
+    Task<List<Expense>> GetExpensesByCategoryIdAsync(Guid categoryId);
 
     /// <summary>
     /// Получает список расходов по определенному кошельку.
     /// </summary>
     /// <param name="walletId">Идентификатор кошелька.</param>
     /// <returns>Список расходов.</returns>
-    Task<List<Expense>> GetExpensesByWalletIdAsync(long walletId);
+    Task<List<Expense>> GetExpensesByWalletIdAsync(Guid walletId);
 }

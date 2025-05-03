@@ -35,7 +35,7 @@ public class ExpenseNotFoundException : Exception
     /// Initializes a new instance of the ExpenseNotFoundException class with the expense ID.
     /// </summary>
     /// <param name="expenseId">The ID of the expense that was not found.</param>
-    public ExpenseNotFoundException(long expenseId)
+    public ExpenseNotFoundException(Guid expenseId)
         : base($"Expense with ID {expenseId} not found.")
     {
     }

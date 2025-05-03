@@ -7,7 +7,7 @@ public record CategoryDto
     /// <summary>
     /// Gets the unique identifier of the Category.
     /// </summary>
-    public long Id { get; init; }
+    public Guid Id { get; init; }
 
     /// <summary>
     /// Gets the name of the Category.
@@ -19,8 +19,7 @@ public record CategoryDto
     /// <summary>
     /// Gets the ID of the Author associated with the Category.
     /// </summary>
-    [Range(1, long.MaxValue, ErrorMessage = "AuthorId must be a positive number.")]
-    public long AuthorId { get; init; }
+    public Guid AuthorId { get; init; }
 
     /// <summary>
     /// Gets the color associated with the Category. Can be null.

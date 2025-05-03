@@ -35,18 +35,15 @@ public record CreateExpenseDto
     /// <summary>
     /// Expense author identifier.
     /// </summary>
-    [Range(1, long.MaxValue, ErrorMessage = "Author ID must be greater than 0.")]
-    public long AuthorId { get; set; }
+    public Guid AuthorId { get; set; }
 
     /// <summary>
     /// Expense wallet identifier.
     /// </summary>
-    [Range(1, long.MaxValue, ErrorMessage = "Wallet ID must be greater than 0.")]
-    public long WalletId { get; set; }
+    public Guid WalletId { get; set; }
 
     /// <summary>
     /// Expense category identifier.
     /// </summary>
-    [Range(1, long.MaxValue, ErrorMessage = "Category ID must be greater than 0.")]
-    public long CategoryId { get; set; }
+    public Guid CategoryId { get; set; }
 }

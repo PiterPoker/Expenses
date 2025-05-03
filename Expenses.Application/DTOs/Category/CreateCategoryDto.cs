@@ -14,8 +14,7 @@ public record CreateCategoryDto
     /// <summary>
     /// Gets the ID of the Author associated with the Category.
     /// </summary>
-    [Range(1, long.MaxValue, ErrorMessage = "AuthorId must be a positive number.")]
-    public long AuthorId { get; init; }
+    public Guid AuthorId { get; init; }
 
     /// <summary>
     /// Gets the color associated with the Category. Can be null.

@@ -20,19 +20,19 @@ public interface IAuthorService
     /// </summary>
     /// <param name="id">The unique identifier of the Author.</param>
     /// <returns>A Task containing the Author's Data Transfer Object, or null if not found.</returns>
-    Task<AuthorDto?> GetAuthorByIdAsync(long id);
+    Task<AuthorDto?> GetAuthorByIdAsync(Guid id);
 
     /// <summary>
     /// Asynchronously updates an existing Author.
     /// </summary>
     /// <param name="dto">The Data Transfer Object containing the Author's updated details.</param>
     /// <returns>A Task representing the asynchronous operation.</returns>
-    Task UpdateAuthorAsync(long authorId, UpdateAuthorDto dto);
+    Task UpdateAuthorAsync(Guid authorId, UpdateAuthorDto dto);
 
     /// <summary>
     /// Asynchronously deletes an Author by their unique identifier.
     /// </summary>
     /// <param name="id">The unique identifier of the Author to delete.</param>
     /// <returns>A Task representing the asynchronous operation.</returns>
-    Task DeleteAuthorAsync(long id);
+    Task DeleteAuthorAsync(Guid id);
 }

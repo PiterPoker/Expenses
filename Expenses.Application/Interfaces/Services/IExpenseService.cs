@@ -7,7 +7,7 @@ namespace Expenses.Application.Interfaces.Services;
 /// </summary>
 public interface IExpenseService
 {
-    Task<List<ExpenseDto>> GetExpensesByAuthorsAsync(List<long> authorIds);
+    Task<List<ExpenseDto>> GetExpensesByAuthorsAsync(List<Guid> authorIds);
     /// <summary>
     /// Asynchronously creates a new expense.
     /// </summary>
@@ -21,28 +21,28 @@ public interface IExpenseService
     /// <param name="expenseId">The unique identifier of the expense to update.</param>
     /// <param name="updateExpenseDto">The Data Transfer Object containing the expense update details.</param>
     /// <returns>A Task containing the updated Expense's Data Transfer Object, or null if update failed.</returns>
-    Task<ExpenseDto?> UpdateExpenseAsync(long expenseId, UpdateExpenseDto updateExpenseDto);
+    Task<ExpenseDto?> UpdateExpenseAsync(Guid expenseId, UpdateExpenseDto updateExpenseDto);
 
     /// <summary>
     /// Asynchronously deletes an expense by its unique identifier.
     /// </summary>
     /// <param name="expenseId">The unique identifier of the expense to delete.</param>
     /// <returns>A Task representing the asynchronous operation.</returns>
-    Task DeleteExpenseAsync(long expenseId);
+    Task DeleteExpenseAsync(Guid expenseId);
 
     /// <summary>
     /// Asynchronously retrieves an expense by its unique identifier.
     /// </summary>
     /// <param name="expenseId">The unique identifier of the expense.</param>
     /// <returns>A Task containing the Expense's Data Transfer Object, or null if not found.</returns>
-    Task<ExpenseDto?> GetExpenseByIdAsync(long expenseId);
+    Task<ExpenseDto?> GetExpenseByIdAsync(Guid expenseId);
 
     /// <summary>
     /// Asynchronously retrieves a list of expenses associated with a specific category.
     /// </summary>
     /// <param name="categoryId">The unique identifier of the category.</param>
     /// <returns>A Task containing a list of Expense Data Transfer Objects.</returns>
-    Task<List<ExpenseDto>> GetExpensesByCategoryIdAsync(long categoryId);
+    Task<List<ExpenseDto>> GetExpensesByCategoryIdAsync(Guid categoryId);
 
     /// <summary>
     /// Asynchronously retrieves a list of expenses within a specified date range.
@@ -57,7 +57,7 @@ public interface IExpenseService
     /// </summary>
     /// <param name="walletId">The unique identifier of the wallet.</param>
     /// <returns>A Task containing a list of Expense Data Transfer Objects.</returns>
-    Task<List<ExpenseDto>> GetExpensesByWalletIdAsync(long walletId);
+    Task<List<ExpenseDto>> GetExpensesByWalletIdAsync(Guid walletId);
 
     /// <summary>
     /// Asynchronously retrieves a list of all expenses.

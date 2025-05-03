@@ -8,7 +8,7 @@ public record WalletDto
     /// <summary>
     /// Gets the unique identifier of the Wallet.
     /// </summary>
-    public long Id { get; init; }
+    public Guid Id { get; init; }
 
     /// <summary>
     /// Gets the name of the Wallet.

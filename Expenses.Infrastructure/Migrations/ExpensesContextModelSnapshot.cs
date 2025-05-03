@@ -18,31 +18,17 @@ namespace Expenses.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("expense")
-                .HasAnnotation("ProductVersion", "9.0.2")
+                .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.HasSequence("author_seq")
-                .IncrementsBy(10);
-
-            modelBuilder.HasSequence("category_seq")
-                .IncrementsBy(10);
-
-            modelBuilder.HasSequence("expense_seq")
-                .IncrementsBy(10);
-
-            modelBuilder.HasSequence("wallet_seq")
-                .IncrementsBy(10);
-
             modelBuilder.Entity("Expenses.Domain.Entities.Author", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseHiLo(b.Property<long>("Id"), "author_seq");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -57,12 +43,10 @@ namespace Expenses.Infrastructure.Migrations
 
             modelBuilder.Entity("Expenses.Domain.Entities.Category", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseHiLo(b.Property<long>("Id"), "category_seq");
 
                     b.Property<string>("Color")
                         .HasMaxLength(100)
@@ -75,8 +59,8 @@ namespace Expenses.Infrastructure.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("name");
 
-                    b.Property<long>("author_id")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("author_id")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -87,12 +71,10 @@ namespace Expenses.Infrastructure.Migrations
 
             modelBuilder.Entity("Expenses.Domain.Entities.Expense", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseHiLo(b.Property<long>("Id"), "expense_seq");
 
                     b.Property<string>("Description")
                         .HasColumnType("text")
@@ -102,14 +84,14 @@ namespace Expenses.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("transaction_date");
 
-                    b.Property<long>("author_id")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("author_id")
+                        .HasColumnType("uuid");
 
-                    b.Property<long>("category_id")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("category_id")
+                        .HasColumnType("uuid");
 
-                    b.Property<long>("wallet_id")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("wallet_id")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -124,12 +106,10 @@ namespace Expenses.Infrastructure.Migrations
 
             modelBuilder.Entity("Expenses.Domain.Entities.Wallet", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseHiLo(b.Property<long>("Id"), "wallet_seq");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -175,8 +155,8 @@ namespace Expenses.Infrastructure.Migrations
 
                     b.OwnsOne("Expenses.Domain.Entities.Money", "Amount", b1 =>
                         {
-                            b1.Property<long>("ExpenseId")
-                                .HasColumnType("bigint");
+                            b1.Property<Guid>("ExpenseId")
+                                .HasColumnType("uuid");
 
                             b1.Property<string>("Currency")
                                 .IsRequired()

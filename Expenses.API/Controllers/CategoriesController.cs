@@ -57,7 +57,7 @@ public class CategoriesController : ControllerBase
     [ProducesResponseType(typeof(CategoryDto), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
     [SwaggerOperation(Summary = "Retrieves a category by ID")]
-    public async Task<ActionResult<CategoryDto>> GetCategoryById([SwaggerParameter(Description = "The unique identifier of the category")] long id)
+    public async Task<ActionResult<CategoryDto>> GetCategoryById([SwaggerParameter(Description = "The unique identifier of the category")] Guid id)
     {
         try
         {
@@ -107,7 +107,7 @@ public class CategoriesController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [SwaggerOperation(Summary = "Updates an existing category by ID")]
     public async Task<IActionResult> UpdateCategory(
-        [SwaggerParameter(Description = "The unique identifier of the category to update")] long id,
+        [SwaggerParameter(Description = "The unique identifier of the category to update")] Guid id,
         [SwaggerRequestBody(Description = "Data for updating the category")] UpdateCategoryDto dto)
     {
         if (!ModelState.IsValid)
@@ -134,7 +134,7 @@ public class CategoriesController : ControllerBase
     [HttpDelete("{id:long}")]
     [ProducesResponseType((int)HttpStatusCode.NoContent)]
     [SwaggerOperation(Summary = "Deletes a category by ID")]
-    public async Task<IActionResult> DeleteCategory([SwaggerParameter(Description = "The unique identifier of the category to delete")] long id)
+    public async Task<IActionResult> DeleteCategory([SwaggerParameter(Description = "The unique identifier of the category to delete")] Guid id)
     {
         try
         {

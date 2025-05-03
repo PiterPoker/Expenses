@@ -36,6 +36,5 @@ public record UpdateExpenseDto
     /// <summary>
     /// Expense category identifier.
     /// </summary>
-    [Range(1, long.MaxValue, ErrorMessage = "Category ID must be greater than 0.")]
-    public long CategoryId { get; set; }
+    public Guid CategoryId { get; set; }
 }
